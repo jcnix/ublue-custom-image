@@ -17,6 +17,12 @@ for pkg in kernel kernel-core kernel-modules kernel-modules-core; do
   rpm --erase $pkg --nodeps
 done
 
+pushd /usr/lib/kernel/install.d
+printf '%s\n' '#!/bin/sh' 'exit 0' >05-rpmostree.install
+printf '%s\n' '#!/bin/sh' 'exit 0' >50-dracut.install
+chmod +x 05-rpmostree.install 50-dracut.install
+popd
+
 dnf5 -y copr enable cjones745/kernel-amdgpu-patch
 dnf5 -y install kernel-6.17.6-301.fc43
 dnf5 -y copr disable cjones745/kernel-amdgpu-patch
