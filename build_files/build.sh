@@ -11,7 +11,7 @@ set -ouex pipefail
 
 #replace Fedora kernel with patched kernel
 
-dnf versionlock delete kernel
+dnf5 versionlock delete kernel kernel-devel kernel-devel-matched kernel-core kernel-modules kernel-modules-core kernel-modules-extra
 
 for pkg in kernel kernel-core kernel-modules kernel-modules-core; do
   rpm --erase $pkg --nodeps
