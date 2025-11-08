@@ -24,7 +24,7 @@ chmod +x 05-rpmostree.install 50-dracut.install
 popd
 
 dnf5 -y copr enable cjones745/kernel-amdgpu-patch
-dnf5 -y --disable-repo=fedora install kernel kernel-modules kernel-modules-extra kernel-devel
+dnf5 -y --disable-repo=fedora* install kernel kernel-modules kernel-modules-extra kernel-devel
 dnf5 -y copr disable cjones745/kernel-amdgpu-patch
 
 KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | sort | tail -n 1)"
