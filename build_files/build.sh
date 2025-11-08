@@ -27,13 +27,13 @@ dnf5 -y copr enable cjones745/kernel-amdgpu-patch
 dnf5 -y install kernel-6.17.6-301.fc43 kernel-modules-extra-matched kernel-devel-matched
 dnf5 -y copr disable cjones745/kernel-amdgpu-patch
 
-KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | sort | tail -n 1)"
+KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | grep 301 | tail -n 1)"
 export DRACUT_NO_XATTR=1
 dracut --no-hostonly --kver "$KERNEL_VERSION" --reproducible --zstd -v --add ostree -f "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
 chmod 0600 "/usr/lib/modules/${KERNEL_VERSION}/initramfs.img"
 
 # this installs a package from fedora repos
-dnf5 install -y tmux
+# dnf5 install -y tmux
 
 # Use a COPR Example:
 #
@@ -44,4 +44,4 @@ dnf5 install -y tmux
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+# systemctl enable podman.socket
