@@ -24,7 +24,7 @@ chmod +x 05-rpmostree.install 50-dracut.install
 popd
 
 dnf copr enable bieszczaders/kernel-cachyos
-dnf5 -y install kernel-cachyos kernel-modules-extra-matched kernel-devel-matched
+dnf5 -y install kernel-cachyos kernel-cachyos-modules kernel-cachyos-devel-matched
 dnf5 -y copr disable bieszczaders/kernel-cachyos
 
 KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | grep 301 | tail -n 1)"
