@@ -23,7 +23,7 @@ printf '%s\n' '#!/bin/sh' 'exit 0' >50-dracut.install
 chmod +x 05-rpmostree.install 50-dracut.install
 popd
 
-dnf copr enable bieszczaders/kernel-cachyos
+dnf5 -y copr enable bieszczaders/kernel-cachyos
 dnf5 -y install kernel-cachyos kernel-cachyos-modules kernel-cachyos-devel-matched
 dnf5 -y copr disable bieszczaders/kernel-cachyos
 
