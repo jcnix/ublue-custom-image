@@ -23,9 +23,9 @@ printf '%s\n' '#!/bin/sh' 'exit 0' >50-dracut.install
 chmod +x 05-rpmostree.install 50-dracut.install
 popd
 
-dnf5 -y copr enable cjones745/kernel-amdgpu-patch
-dnf5 -y install kernel-6.17.6-301.fc43 kernel-modules-extra-matched kernel-devel-matched
-dnf5 -y copr disable cjones745/kernel-amdgpu-patch
+dnf copr enable bieszczaders/kernel-cachyos
+dnf5 -y install kernel-cachyos kernel-modules-extra-matched kernel-devel-matched
+dnf5 -y copr disable bieszczaders/kernel-cachyos
 
 KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | grep 301 | tail -n 1)"
 export DRACUT_NO_XATTR=1
