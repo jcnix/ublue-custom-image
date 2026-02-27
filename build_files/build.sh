@@ -27,7 +27,7 @@ dnf5 -y copr enable bieszczaders/kernel-cachyos
 dnf5 -y install kernel-cachyos kernel-cachyos-modules kernel-cachyos-devel-matched
 dnf5 -y copr disable bieszczaders/kernel-cachyos
 
-KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | grep 301 | tail -n 1)"
+KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | grep cachyos | tail -n 1)"
 export DRACUT_NO_XATTR=1
 dracut --no-hostonly --kver "$KERNEL_VERSION" --reproducible --zstd -v --add ostree -f "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
 chmod 0600 "/usr/lib/modules/${KERNEL_VERSION}/initramfs.img"
